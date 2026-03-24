@@ -1,0 +1,39 @@
+<div class="chat-wrapper">
+  <div class="chat-header">
+    <div class="avatar">💬</div>
+    <div class="header-info">
+      <h2>Group Chat</h2>
+      <span class="status">● Online</span>
+    </div>
+  </div>
+
+  <div class="messages-box">
+    @for (msg of messages; track msg) {
+      <div class="message">
+        <div class="bubble">
+          <span class="username">{{ msg.user }}</span>
+          <p class="text">{{ msg.message }}</p>
+        </div>
+      </div>
+    }
+    @if (messages.length === 0) {
+      <div class="empty">
+        <span>empty</span>
+        <p>No messages yet. Say hello!</p>
+      </div>
+    }
+  </div>
+
+  <div class="input-area">
+    <input [(ngModel)]="user" placeholder="Your name" class="input-user" />
+    <input
+      [(ngModel)]="message"
+      placeholder="Type a message..."
+      class="input-msg"
+      (keyup.enter)="sendmessage()"
+    />
+    <button (click)="sendmessage()" class="send-btn">
+      ➤
+    </button>
+  </div>
+</div>
